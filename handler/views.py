@@ -14,29 +14,31 @@ def choose(request):
     global qSet
     global title
     link = request.GET.get('link')
-    #print(link)
-    youtube = YouTube(
-       link,
-       use_oauth=False,
-       allow_oauth_cache=True
-    )
-    #print(youtube.title)
+    try:
+        youtube = YouTube(
+            link,
+            use_oauth=False,
+            allow_oauth_cache=True
+        )
+    except:
+        return render(request,'failure.html')
     res_list = []
     qSet = youtube.streams.filter(subtype='mp4')
     for q in qSet:
         res_list.append(q.resolution)
     res_list = list(filter(lambda item: item is not None,res_list))
     res_set = set(res_list)
-    print(' '.join(res_set))
     title = youtube.title
     return render(request, 'result.html',{'title': youtube.title, 'resolutions': ' '.join(res_set)})
 
 def getFile(request):
     global qSet
-    print("HII")
     res = request.GET.get('res')
     video = qSet.filter(resolution=res).first()
-    abs_path = video.download('temp/',filename='download.mp4')
+    try :
+        abs_path = video.download('temp/',filename='download.mp4')
+    except :
+        return render(request,'failure.html')
     path = 'temp/download.mp4'
     file = FileWrapper(open(path, 'rb'))
     response = HttpResponse(file, content_type='video/mp4')
