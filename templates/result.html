@@ -1,0 +1,9 @@
+{% extends 'base.html'%} {% block content%}
+<article>Title is {{title}}</article>
+<article>Following resolutions are available: {{resolutions}}</article>
+<form action="../getFile">
+  What Resolution do you want <input type="text" name="res" /><br />
+  <input type="submit" />
+</form>
+
+{% endblock %}

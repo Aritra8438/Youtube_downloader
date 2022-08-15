@@ -1,0 +1,1 @@
+web gunicorn Ytbdownloader.wsgi: application --log-file -
