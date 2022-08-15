@@ -1,1 +1,1 @@
-web gunicorn Ytbdownloader.wsgi: application --log-file -
+web gunicorn Ytbdownloader.wsgi:application --log-file -
