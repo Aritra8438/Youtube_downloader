@@ -22,7 +22,7 @@ def choose(request):
     )
     #print(youtube.title)
     res_list = []
-    qSet = youtube.streams
+    qSet = youtube.streams.filter(subtype='mp4')
     for q in qSet:
         res_list.append(q.resolution)
     res_list = list(filter(lambda item: item is not None,res_list))
@@ -33,11 +33,11 @@ def choose(request):
 
 def getFile(request):
     global qSet
+    print("HII")
     res = request.GET.get('res')
-    video = qSet.filter(resolution=res).filter(subtype='mp4').first()
-    abs_path = video.download('temp/')
-    #print(abs_path)
-    path = 'temp/'+title+'.mp4'
+    video = qSet.filter(resolution=res).first()
+    abs_path = video.download('temp/',filename='download.mp4')
+    path = 'temp/download.mp4'
     file = FileWrapper(open(path, 'rb'))
     response = HttpResponse(file, content_type='video/mp4')
     response['Content-Disposition'] = 'attachment; filename='+title+'.mp4'

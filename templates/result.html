@@ -1,9 +1,34 @@
 {% extends 'base.html'%} {% block content%}
-<article>Title is {{title}}</article>
-<article>Following resolutions are available: {{resolutions}}</article>
-<form action="../getFile">
-  What Resolution do you want <input type="text" name="res" /><br />
-  <input type="submit" />
-</form>
+<center>
+  <p
+    style="
+      font-family: georgia, garamond, serif;
+      font-size: 32px;
+      font-style: bold;
+    "
+  >
+    You are about to download {{title}}
+  </p>
+</center>
+<br />
+<article style="font-family: arial, garamond, serif; font-size: 20px">
+  ‣ Following resolutions are available: {{resolutions}}
+</article>
+<br /><br /><br />
+<center>
+  <form action="../getFile">
+    <p
+      style="
+        font-family: georgia, garamond, serif;
+        font-size: 32px;
+        font-style: bold;
+      "
+    >
+      What Resolution do you want (e.g. 360p):
+      <input type="text" name="res" style="font-size: 16pt" size="20" /><br />
+    </p>
+    <input type="submit" value="Download 🪄" style="font-size: 16pt" />
+  </form>
+</center>
 
 {% endblock %}

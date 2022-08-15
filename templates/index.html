@@ -1,7 +1,46 @@
 {% extends 'base.html'%} {% block content%}
 <form action="choose">
-  Enter the Link for the youtube video: <input type="text" name="link" /><br />
-  <input type="submit" />
+  <center>
+    <p
+      style="
+        font-family: georgia, garamond, serif;
+        font-size: 32px;
+        font-style: bold;
+      "
+    >
+      Youtube Downloader
+    </p>
+  </center>
+  <center>
+    <p style="font-family: garamond, serif; font-size: 24px">
+      Enter the Link for the youtube video:
+      <input type="text" name="link" style="font-size: 16pt" size="50" /><br />
+      <br />
+    </p>
+  </center>
+  <center><input type="submit" value="Go 🪄" style="font-size: 16pt" /></center>
+  <br /><br /><br /><br />
+  <p
+    style="
+      font-family: ariral, garamond, serif;
+      font-size: 25px;
+      font-style: bold;
+    "
+  >
+    ‣Instructions:
+  </p>
+  <p style="font-family: ariral, garamond, serif; font-size: 20px">
+    ⦿ This is a very basic Youtube Downloader. You have to provide the link, on
+    the next page you have to choose the resolution. Based on your choice the
+    video will be downloaded on your device.
+  </p>
+  <p style="font-family: ariral, garamond, serif; font-size: 20px">
+    ⦿ Don't try to fetch a live video by providing the link
+  </p>
+  <p style="font-family: ariral, garamond, serif; font-size: 20px">
+    ⦿ If you think of changing the link or the resolution, just start from the
+    very beginning.
+  </p>
 </form>
 
 {% endblock %}
