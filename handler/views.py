@@ -20,16 +20,16 @@ def choose(request):
             use_oauth=False,
             allow_oauth_cache=True
         )
-        res_list = []
-        qSet = youtube.streams.filter(subtype='mp4')
-        for q in qSet:
-            res_list.append(q.resolution)
-        res_list = list(filter(lambda item: item is not None, res_list))
-        res_set = set(res_list)
-        title = youtube.title
-        return render(request, 'result.html', {'title': youtube.title, 'resolutions': ' '.join(res_set)})
     except:
         return render(request,'failure.html')
+    res_list = []
+    qSet = youtube.streams.filter(subtype='mp4')
+    for q in qSet:
+        res_list.append(q.resolution)
+    res_list = list(filter(lambda item: item is not None,res_list))
+    res_set = set(res_list)
+    title = youtube.title
+    return render(request, 'result.html',{'title': youtube.title, 'resolutions': ' '.join(res_set)})
 
 def getFile(request):
     global qSet
