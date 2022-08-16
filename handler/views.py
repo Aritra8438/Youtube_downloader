@@ -35,13 +35,19 @@ def getFile(request):
     global qSet
     res = request.GET.get('res')
     video = qSet.filter(resolution=res).first()
-    try :
-        abs_path = video.download('temp/',filename='download.mp4')
-    except :
-        return render(request,'failure.html')
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     path = 'temp/download.mp4'
-    file = FileWrapper(open(path, 'rb'))
-    response = HttpResponse(file, content_type='video/mp4')
-    response['Content-Disposition'] = 'attachment; filename='+title+'.mp4'
-    os.remove(abs_path)
-    return response
+    abs_path = os.path.join(BASE_DIR,path)
+    try:
+        os.remove(abs_path)
+    except:
+        pass
+    try:
+        abs_path = video.download('temp/', filename='download.mp4')
+        file = FileWrapper(open(path, 'rb'))
+        response = HttpResponse(file, content_type='video/mp4')
+        response['Content-Disposition'] = 'attachment; filename=' + title + '.mp4'
+        os.remove(abs_path)
+        return response
+    except:
+        return render(request,'failure.html')
