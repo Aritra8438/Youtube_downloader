@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from wsgiref.util import FileWrapper
 from pytube import YouTube
 
-qSet = "to_be_asigned"
-title = "to_be_asigned"
+qSet = None
+title = None
 
 def index(request):
     return render(request,'index.html')
